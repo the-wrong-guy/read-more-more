@@ -1,6 +1,6 @@
 import { useState } from "react";
 import parse from "html-react-parser";
-import styles from "./readmore.module.scss";
+import styles from "./read-more-more.module.scss";
 const ReadMoreMore = ({
   text,
   checkFor,
