@@ -32,14 +32,14 @@ const ReadMoreMore = ({
         </div>
         {fullText ? (
           <button
-            style={{ btnStyles }}
+            style={btnStyles}
             className={styles.btn}
             onClick={() => setFullText(false)}>
             {readLessText ? readLessText : "read less..."}
           </button>
         ) : (
           <button
-            style={{ btnStyles }}
+            style={btnStyles}
             className={styles.btn}
             onClick={() => setFullText(true)}>
             {readMoreText ? readMoreText : "read more..."}
