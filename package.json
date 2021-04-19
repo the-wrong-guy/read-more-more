@@ -1,6 +1,6 @@
 {
   "name": "read-more-more",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Read-More-More is a simple pakage for react that helps to implement 'read more' or 'read less' feature to any given text",
   "main": "read-more-more.js",
   "scripts": {
@@ -16,5 +16,13 @@
   "dependencies": {
     "html-react-parser": "^1.2.6",
     "react": "^17.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-wrong-guy/read-more-more.git"
+  },
+  "bugs": {
+    "url": "https://github.com/the-wrong-guy/read-more-more/issues"
+  },
+  "homepage": "https://github.com/the-wrong-guy/read-more-more#readme"
 }
