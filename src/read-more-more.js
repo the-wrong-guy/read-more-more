@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import parse from "html-react-parser";
 import styles from "./read-more-more.module.scss";
 const ReadMoreMore = ({
@@ -10,7 +10,7 @@ const ReadMoreMore = ({
   linesToShow,
   parseHtml,
   readMoreText,
-  readLessText
+  readLessText,
 }) => {
   const [fullText, setFullText] = useState(false);
   if (text.length > checkFor || 300) {
@@ -26,22 +26,25 @@ const ReadMoreMore = ({
             lineHeight: "20px",
             maxHeight: fullText
               ? "1000px"
-              : `${linesToShow ? `${linesToShow * 20}px` : "100px"}`
-          }}>
+              : `${linesToShow ? `${linesToShow * 20}px` : "100px"}`,
+          }}
+        >
           {parseHtml ? parse(text) : text}
         </div>
         {fullText ? (
           <button
             style={btnStyles}
             className={styles.btn}
-            onClick={() => setFullText(false)}>
+            onClick={() => setFullText(false)}
+          >
             {readLessText ? readLessText : "read less..."}
           </button>
         ) : (
           <button
             style={btnStyles}
             className={styles.btn}
-            onClick={() => setFullText(true)}>
+            onClick={() => setFullText(true)}
+          >
             {readMoreText ? readMoreText : "read more..."}
           </button>
         )}
