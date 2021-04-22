@@ -1,5 +1,9 @@
 # Read-More-More
 
+<img src="https://img.shields.io/npm/v/read-more-more"/>
+<img src="https://img.shields.io/badge/license-AGPL--3.0-green"/>
+<img src="https://img.shields.io/bundlephobia/min/read-more-more"/>
+
 Read-More-More is a simple pakage for react that helps to implement 'read more' or 'read less' feature to any given text, you can limit the number of chracters in string/text to give the "read more" text at the end, also if you have a `HTML String` that you want to convert it to `React element`, you can do that too by add `parseHtml` prop
 
 ## Motivation
