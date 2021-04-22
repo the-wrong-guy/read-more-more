@@ -1,1 +1,1 @@
-export { default as ReadMoreMore } from "./read-more-more";
+export { default as ReadMoreMore } from "./component/read-more-more";
