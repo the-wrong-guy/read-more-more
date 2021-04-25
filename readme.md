@@ -10,7 +10,7 @@ Read-More-More is a simple pakage for react that helps to implement 'read more' 
 
 ## Motivation
 
-I was working on a project where i need to use "read more/less" button , cause of the huge "HTML String" I was getting from an API and I tried finding libraries to add "read more/less" feature to the text but the problem was that in those libraries there was not any options for parsing HTML string to React element , which was serious need for me.Also I tried parsing the text that i was getting from other 'read more' libraries but that didn't work too. So finally I decided to make my own 'read more/less' library and here we are.
+I was working on a project where i needed to use "read more/less" button , cause of the huge "HTML String" I was getting from an API and I tried finding libraries to add "read more/less" feature to the text but the problem was that in those libraries there was not any options for parsing HTML string to React element , which was serious need for me.Also I tried parsing the text that i was getting from other 'read more' libraries but that didn't work too. So finally I decided to make my own 'read more/less' library and here we are.
 
 ## How to Use
 
@@ -34,7 +34,7 @@ import {ReadMoreMore} from 'read-more-more';
 |     Props     |  type   | Default Value |                       Defination                       |
 | :-----------: | :-----: | :-----------: | :----------------------------------------------------: |
 |     text      | string  |     null      |    add the text you want to "read more/less" to it     |
-|   checkFor    | number  |      300      | how many characters it should check to add "read more" |
+|   checkFor    | number  |      300  np    | how many characters it should check to add "read more" |
 |   btnStyles   | object  |     null      |     pass custom styles to "read more/less" button      |
 | transDuration | number  |      2s       | transition duration for the read more/less collapsing  |
 |   transType   | string  |    linear     |   transition type for the read more/less collapsing    |

@@ -1,6 +1,6 @@
 {
   "name": "read-more-more",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "Read-More-More is a simple pakage for react that helps to implement 'read more' or 'read less' feature to any given text",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
