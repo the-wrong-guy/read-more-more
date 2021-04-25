@@ -116,7 +116,7 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
       fullText = _useState2[0],
       setFullText = _useState2[1];
 
-  if (text.length > checkFor || 300) {
+  if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
     return /*#__PURE__*/React__default['default'].createElement("div", {
       style: {
         margin: "0",
@@ -130,7 +130,7 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
         lineHeight: "20px",
         maxHeight: fullText ? "1000px" : "".concat(linesToShow ? "".concat(linesToShow * 20, "px") : "100px")
       }
-    }, parseHtml ? parse__default['default'](text) : text), fullText ? /*#__PURE__*/React__default['default'].createElement("button", {
+    }, parseHtml ? parse__default['default'](text) : text ? text : ""), fullText ? /*#__PURE__*/React__default['default'].createElement("button", {
       style: btnStyles,
       className: styles.btn,
       onClick: function onClick() {
