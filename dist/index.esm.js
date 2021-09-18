@@ -160,16 +160,9 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
       fullText = _useState2[0],
       setFullText = _useState2[1];
 
-  var _useState3 = useState(null),
-      _useState4 = _slicedToArray(_useState3, 2);
-      _useState4[0];
-      _useState4[1];
-
   var textDiv = useRef(null);
   useEffect(function () {
-    var height = textDiv.current.offsetHeight;
-    console.log("Input height", height);
-    console.log(textStyles);
+    textDiv.current.offsetHeight;
   }, [fullText]);
 
   if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
@@ -185,7 +178,7 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
         overflow: "hidden",
         display: "block",
         lineHeight: "20px",
-        maxHeight: fullText ? "1000px" : "".concat(linesToShow ? "".concat(linesToShow * 20, "px") : "100px")
+        maxHeight: fullText ? "1000px" : linesToShow ? "".concat(linesToShow * 20, "px") : "60px"
       }, textStyles)
     }, parseHtml ? parse(text) : text ? text : ""), fullText ? /*#__PURE__*/React.createElement("button", {
       style: btnStyles,
@@ -220,4 +213,96 @@ ReadMoreMore.propTypes = {
   readLessText: PropTypes.string
 };
 
-export { ReadMoreMore };
+var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
+  var text = _ref.text,
+      checkFor = _ref.checkFor,
+      btnStyles = _ref.btnStyles,
+      transDuration = _ref.transDuration,
+      transType = _ref.transType,
+      linesToShow = _ref.linesToShow,
+      parseHtml = _ref.parseHtml,
+      readMoreText = _ref.readMoreText,
+      readLessText = _ref.readLessText,
+      lineHeight = _ref.lineHeight,
+      fontSize = _ref.fontSize,
+      color = _ref.color;
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      clicked = _useState2[0],
+      setClicked = _useState2[1];
+
+  var _useState3 = useState(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      divHeight = _useState4[0],
+      setDivHeight = _useState4[1];
+
+  var oneTime = useRef(false);
+  var divRef = useRef(null);
+
+  function settingHeightForTransition() {
+    if (!oneTime.current) {
+      oneTime.current = true;
+      setDivHeight(divRef.current.offsetHeight);
+    }
+  }
+
+  window.addEventListener("resize", function () {
+    setDivHeight(null);
+    oneTime.current = false;
+    setClicked(false);
+  });
+  useEffect(function () {
+    divRef.current.addEventListener("transitionend", settingHeightForTransition);
+  }, []);
+
+  var handleBtnClick = function handleBtnClick() {
+    setClicked(!clicked);
+  };
+
+  var textStyles = {
+    overflow: "hidden",
+    maxHeight: clicked ? oneTime.current ? "".concat(divHeight, "px") : "200px" : linesToShow ? "".concat(linesToShow * (lineHeight !== null && lineHeight !== void 0 ? lineHeight : 20), "px") : "60px",
+    transition: "max-height ".concat(transDuration || "1s", " ").concat(transType || "ease-in-out"),
+    textAlign: "justify",
+    lineHeight: lineHeight ? "".concat(lineHeight, "px") : "20px",
+    fontSize: fontSize ? "".concat(fontSize, "px") : "15px",
+    color: color !== null && color !== void 0 ? color : "#000"
+  };
+
+  if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      style: textStyles,
+      ref: divRef
+    }, parseHtml ? parse(text) : text), clicked ? /*#__PURE__*/React.createElement("button", {
+      style: btnStyles && btnStyles,
+      className: styles.btn,
+      onClick: handleBtnClick
+    }, readLessText ? readLessText : "read less...") : /*#__PURE__*/React.createElement("button", {
+      style: btnStyles,
+      className: styles.btn,
+      onClick: handleBtnClick
+    }, readMoreText ? readMoreText : "read more..."));
+  } else {
+    return /*#__PURE__*/React.createElement("div", {
+      ref: textDiv
+    }, parseHtml ? parse(text) : text);
+  }
+};
+
+AdvReadMoreMore.propTypes = {
+  text: PropTypes.string.isRequired,
+  checkFor: PropTypes.string,
+  btnStyles: PropTypes.object,
+  transDuration: PropTypes.number,
+  transType: PropTypes.string,
+  linesToShow: PropTypes.number,
+  parseHtml: PropTypes.bool,
+  readMoreText: PropTypes.string,
+  readLessText: PropTypes.string,
+  lineHeight: PropTypes.number,
+  fontSize: PropTypes.number,
+  color: PropTypes.string
+};
+
+export { AdvReadMoreMore, ReadMoreMore };
