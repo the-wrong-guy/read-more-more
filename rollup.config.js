@@ -19,7 +19,7 @@ export default {
     }),
     external(),
     babel({
-      exclude: "node_modules/**",
+      exclude: "node_modules/**,Testing/**",
     }),
     del({ targets: ["dist/*"] }),
   ],

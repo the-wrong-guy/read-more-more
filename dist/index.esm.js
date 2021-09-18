@@ -1,5 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import parse from 'html-react-parser';
+import PropTypes from 'prop-types';
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
 
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
@@ -61,10 +111,12 @@ function _nonIterableRest() {
 }
 
 function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
+  if (ref === void 0) ref = {};
   var insertAt = ref.insertAt;
 
-  if (!css || typeof document === 'undefined') { return; }
+  if (!css || typeof document === 'undefined') {
+    return;
+  }
 
   var head = document.head || document.getElementsByTagName('head')[0];
   var style = document.createElement('style');
@@ -100,12 +152,25 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
       linesToShow = _ref.linesToShow,
       parseHtml = _ref.parseHtml,
       readMoreText = _ref.readMoreText,
-      readLessText = _ref.readLessText;
+      readLessText = _ref.readLessText,
+      textStyles = _ref.textStyles;
 
   var _useState = useState(false),
       _useState2 = _slicedToArray(_useState, 2),
       fullText = _useState2[0],
       setFullText = _useState2[1];
+
+  var _useState3 = useState(null),
+      _useState4 = _slicedToArray(_useState3, 2);
+      _useState4[0];
+      _useState4[1];
+
+  var textDiv = useRef(null);
+  useEffect(function () {
+    var height = textDiv.current.offsetHeight;
+    console.log("Input height", height);
+    console.log(textStyles);
+  }, [fullText]);
 
   if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
     return /*#__PURE__*/React.createElement("div", {
@@ -114,13 +179,14 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
         padding: "0"
       }
     }, /*#__PURE__*/React.createElement("div", {
-      style: {
+      ref: textDiv,
+      style: _objectSpread2({
         transition: "max-height ".concat(transDuration || "2s", " ").concat(transType || "linear"),
         overflow: "hidden",
         display: "block",
         lineHeight: "20px",
         maxHeight: fullText ? "1000px" : "".concat(linesToShow ? "".concat(linesToShow * 20, "px") : "100px")
-      }
+      }, textStyles)
     }, parseHtml ? parse(text) : text ? text : ""), fullText ? /*#__PURE__*/React.createElement("button", {
       style: btnStyles,
       className: styles.btn,
@@ -135,8 +201,23 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
       }
     }, readMoreText ? readMoreText : "read more..."));
   } else {
-    return /*#__PURE__*/React.createElement("div", null, parseHtml ? parse(text) : text);
+    return /*#__PURE__*/React.createElement("div", {
+      ref: textDiv
+    }, parseHtml ? parse(text) : text);
   }
+};
+
+ReadMoreMore.propTypes = {
+  text: PropTypes.string.isRequired,
+  textStyles: PropTypes.object,
+  checkFor: PropTypes.string,
+  btnStyles: PropTypes.object,
+  transDuration: PropTypes.number,
+  transType: PropTypes.string,
+  linesToShow: PropTypes.number,
+  parseHtml: PropTypes.bool,
+  readMoreText: PropTypes.string,
+  readLessText: PropTypes.string
 };
 
 export { ReadMoreMore };
