@@ -1,7 +1,7 @@
 {
   "name": "read-more-more",
-  "version": "2.0.0",
-  "description": "Read-More-More is a simple pakage for react that helps to implement 'read more' or 'read less' feature to any given text",
+  "version": "2.0.2",
+  "description": "Read-More-More is a simple package for react that helps to implement 'read more' or 'read less' feature to any given text",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "source": "src/index.js",
@@ -20,10 +20,7 @@
   "author": "Bhargab Kalita",
   "license": "AGPL-3.0",
   "dependencies": {
-    "html-react-parser": "^1.2.6",
-    "node-sass": "^5.0.0",
-    "prop-types": "^15.7.2",
-    "react-scripts": "^4.0.3"
+    "html-react-parser": "^1.2.6"
   },
   "repository": {
     "type": "git",
@@ -45,7 +42,10 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-scss": "^2.6.1"
+    "rollup-plugin-scss": "^2.6.1",
+    "node-sass": "^5.0.0",
+    "prop-types": "^15.7.2",
+    "react-scripts": "^4.0.3"
   },
   "peerDependencies": {
     "react": "^17.0.2",

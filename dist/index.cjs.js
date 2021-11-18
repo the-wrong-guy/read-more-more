@@ -154,6 +154,8 @@ var styles = {"btn":"read-more-more-module_btn__33IaH","readMoreActive":"read-mo
 styleInject(css_248z);
 
 var ReadMoreMore = function ReadMoreMore(_ref) {
+  var _ref2;
+
   var text = _ref.text,
       checkFor = _ref.checkFor,
       btnStyles = _ref.btnStyles,
@@ -168,23 +170,21 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
   var _useState = React.useState(false),
       _useState2 = _slicedToArray(_useState, 2),
       fullText = _useState2[0],
-      setFullText = _useState2[1];
+      setFullText = _useState2[1]; // const textDiv = useRef(null);
+  // useEffect(() => {
+  //   const height = textDiv.current.offsetHeight;
+  // }, [fullText]);
 
-  var textDiv = React.useRef(null);
-  React.useEffect(function () {
-    textDiv.current.offsetHeight;
-  }, [fullText]);
 
-  if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
+  if ((_ref2 = (text === null || text === void 0 ? void 0 : text.length) > checkFor) !== null && _ref2 !== void 0 ? _ref2 : 300) {
     return /*#__PURE__*/React__default['default'].createElement("div", {
       style: {
         margin: "0",
         padding: "0"
       }
     }, /*#__PURE__*/React__default['default'].createElement("div", {
-      ref: textDiv,
       style: _objectSpread2({
-        transition: "max-height ".concat(transDuration || "2s", " ").concat(transType || "linear"),
+        transition: "max-height ".concat(transDuration !== null && transDuration !== void 0 ? transDuration : "2s", " ").concat(transType !== null && transType !== void 0 ? transType : "linear"),
         overflow: "hidden",
         display: "block",
         lineHeight: "20px",
@@ -204,16 +204,14 @@ var ReadMoreMore = function ReadMoreMore(_ref) {
       }
     }, readMoreText ? readMoreText : "read more..."));
   } else {
-    return /*#__PURE__*/React__default['default'].createElement("div", {
-      ref: textDiv
-    }, parseHtml ? parse__default['default'](text) : text);
+    return /*#__PURE__*/React__default['default'].createElement("div", null, parseHtml ? parse__default['default'](text) : text);
   }
 };
 
 ReadMoreMore.propTypes = {
   text: PropTypes__default['default'].string.isRequired,
   textStyles: PropTypes__default['default'].object,
-  checkFor: PropTypes__default['default'].string,
+  checkFor: PropTypes__default['default'].number,
   btnStyles: PropTypes__default['default'].object,
   transDuration: PropTypes__default['default'].number,
   transType: PropTypes__default['default'].string,
@@ -224,6 +222,8 @@ ReadMoreMore.propTypes = {
 };
 
 var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
+  var _ref2;
+
   var text = _ref.text,
       checkFor = _ref.checkFor,
       btnStyles = _ref.btnStyles,
@@ -253,7 +253,7 @@ var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
   function settingHeightForTransition() {
     if (!oneTime.current) {
       oneTime.current = true;
-      setDivHeight(divRef.current.offsetHeight);
+      setDivHeight(divRef === null || divRef === void 0 ? void 0 : divRef.current.offsetHeight);
     }
   }
 
@@ -263,7 +263,9 @@ var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
     setClicked(false);
   });
   React.useEffect(function () {
-    divRef.current.addEventListener("transitionend", settingHeightForTransition);
+    var _divRef$current;
+
+    divRef === null || divRef === void 0 ? void 0 : (_divRef$current = divRef.current) === null || _divRef$current === void 0 ? void 0 : _divRef$current.addEventListener("transitionend", settingHeightForTransition);
   }, []);
 
   var handleBtnClick = function handleBtnClick() {
@@ -272,15 +274,15 @@ var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
 
   var textStyles = {
     overflow: "hidden",
-    maxHeight: clicked ? oneTime.current ? "".concat(divHeight, "px") : "200px" : linesToShow ? "".concat(linesToShow * (lineHeight !== null && lineHeight !== void 0 ? lineHeight : 20), "px") : "60px",
-    transition: "max-height ".concat(transDuration || "1s", " ").concat(transType || "ease-in-out"),
+    maxHeight: clicked ? oneTime !== null && oneTime !== void 0 && oneTime.current ? "".concat(divHeight, "px") : "200px" : linesToShow ? "".concat(linesToShow * (lineHeight !== null && lineHeight !== void 0 ? lineHeight : 20), "px") : "60px",
+    transition: "max-height ".concat(transDuration !== null && transDuration !== void 0 ? transDuration : "1s", " ").concat(transType !== null && transType !== void 0 ? transType : "ease-in-out"),
     textAlign: "justify",
     lineHeight: lineHeight ? "".concat(lineHeight, "px") : "20px",
     fontSize: fontSize ? "".concat(fontSize, "px") : "15px",
     color: color !== null && color !== void 0 ? color : "#000"
   };
 
-  if ((text === null || text === void 0 ? void 0 : text.length) > checkFor || 300) {
+  if ((_ref2 = (text === null || text === void 0 ? void 0 : text.length) > checkFor) !== null && _ref2 !== void 0 ? _ref2 : 300) {
     return /*#__PURE__*/React__default['default'].createElement(React__default['default'].Fragment, null, /*#__PURE__*/React__default['default'].createElement("div", {
       style: textStyles,
       ref: divRef
@@ -294,15 +296,13 @@ var AdvReadMoreMore = function AdvReadMoreMore(_ref) {
       onClick: handleBtnClick
     }, readMoreText ? readMoreText : "read more..."));
   } else {
-    return /*#__PURE__*/React__default['default'].createElement("div", {
-      ref: textDiv
-    }, parseHtml ? parse__default['default'](text) : text);
+    return /*#__PURE__*/React__default['default'].createElement("div", null, parseHtml ? parse__default['default'](text) : text);
   }
 };
 
 AdvReadMoreMore.propTypes = {
   text: PropTypes__default['default'].string.isRequired,
-  checkFor: PropTypes__default['default'].string,
+  checkFor: PropTypes__default['default'].number,
   btnStyles: PropTypes__default['default'].object,
   transDuration: PropTypes__default['default'].number,
   transType: PropTypes__default['default'].string,
